@@ -1,6 +1,6 @@
 import './Dock.css'
 
-type Section = 'about' | 'experience' | 'projects' | 'reads' | 'blog' | 'contact' | 'research'
+type Section = 'about' | 'experience' | 'projects' | 'blog' | 'contact' | 'research'
 
 interface DockProps {
   onIconClick: (section: Section) => void
@@ -17,8 +17,7 @@ const dockIcons: DockIconData[] = [
   { id: 'experience', label: 'Experience', icon: '💼' },
   { id: 'research', label: 'Research', icon: '🔬' },
   { id: 'projects', label: 'Projects', icon: '🚀' },
-  { id: 'reads', label: 'Reads', icon: '📚' },
-  { id: 'blog', label: 'Blog', icon: '✍️' },
+  { id: 'blog', label: 'Essays', icon: '✍️' },
   { id: 'contact', label: 'Contact', icon: '📧' },
 ]
 

@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react'
 import Desktop from './components/desktop/Desktop'
 import './styles/App.css'
 
-type Section = 'about' | 'experience' | 'research' | 'projects' | 'reads' | 'blog' | 'contact'
+type Section = 'about' | 'experience' | 'research' | 'projects' | 'blog' | 'contact'
 
 function App() {
   const [activeSection, setActiveSection] = useState<Section>('about')
@@ -17,8 +17,7 @@ function App() {
 :about - About section
 :experience - Experience section
 :projects - Projects section
-:reads - Reading list
-:blog - Blog posts
+:essays - Essays
 :contact - Contact information
 :research - Research publications
 
@@ -35,8 +34,8 @@ Esc - Close command palette`)
       ':experience': 'experience',
       ':research': 'research',
       ':projects': 'projects',
-      ':reads': 'reads',
       ':blog': 'blog',
+      ':essays': 'blog',
       ':contact': 'contact',
     }
 
@@ -71,7 +70,7 @@ Esc - Close command palette`)
 
       // Tab navigation with h/l
       if (!showCommandPalette) {
-        const sections: Section[] = ['about', 'experience', 'research', 'projects', 'reads', 'blog', 'contact']
+        const sections: Section[] = ['about', 'experience', 'research', 'projects', 'blog', 'contact']
         const currentIndex = sections.indexOf(activeSection)
 
         if (e.key === 'h' && currentIndex > 0) {

@@ -1,6 +1,6 @@
 import './DesktopIcons.css'
 
-type Section = 'about' | 'experience' | 'projects' | 'reads' | 'blog' | 'contact' | 'research'
+type Section = 'about' | 'experience' | 'projects' | 'blog' | 'contact' | 'research'
 
 interface DesktopIconsProps {
   onIconClick: (section: Section) => void
@@ -17,7 +17,7 @@ const icons: IconData[] = [
   { id: 'experience', label: 'Experience', icon: '💼' },
   { id: 'research', label: 'Research', icon: '🔬' },
   { id: 'projects', label: 'Projects', icon: '🚀' },
-  { id: 'reads', label: 'Reads', icon: '📚' },
+  { id: 'blog', label: 'Blogs', icon: '✍️' },
   { id: 'about', label: 'readme.txt', icon: '📄' },
 ]
 

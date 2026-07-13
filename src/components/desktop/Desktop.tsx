@@ -1,12 +1,16 @@
-import { useState } from 'react'
 import TopBar from './TopBar'
 import DesktopIcons from './DesktopIcons'
-import Window from './Window'
 import Dock from './Dock'
 import CommandPalette from './CommandPalette'
+import AboutWindow from '../../windows/AboutWindow'
+import ExperienceWindow from '../../windows/ExperienceWindow'
+import ProjectsWindow from '../../windows/ProjectsWindow'
+import BlogWindow from '../../windows/BlogWindow'
+import ContactWindow from '../../windows/ContactWindow'
+import ResearchWindow from '../../windows/ResearchWindow'
 import './Desktop.css'
 
-type Section = 'about' | 'experience' | 'research' | 'projects' | 'reads' | 'blog' | 'contact'
+type Section = 'about' | 'experience' | 'research' | 'projects' | 'blog' | 'contact'
 
 interface DesktopProps {
   activeSection: Section
@@ -27,7 +31,24 @@ export default function Desktop({
   setCommandInput,
   handleCommand,
 }: DesktopProps) {
-  const [windowOpen, setWindowOpen] = useState(true)
+  const renderContent = () => {
+    switch (activeSection) {
+      case 'about':
+        return <AboutWindow />
+      case 'experience':
+        return <ExperienceWindow />
+      case 'research':
+        return <ResearchWindow />
+      case 'projects':
+        return <ProjectsWindow />
+      case 'blog':
+        return <BlogWindow />
+      case 'contact':
+        return <ContactWindow />
+      default:
+        return <AboutWindow />
+    }
+  }
 
   return (
     <div className="desktop">
@@ -35,20 +56,12 @@ export default function Desktop({
 
       <div className="desktop-main">
         <DesktopIcons onIconClick={setActiveSection} />
-
-        {windowOpen && (
-          <Window
-            activeSection={activeSection}
-            setActiveSection={setActiveSection}
-            onClose={() => setWindowOpen(false)}
-          />
-        )}
+        <main className="desktop-content" aria-live="polite">
+          {renderContent()}
+        </main>
       </div>
 
-      <Dock onIconClick={(section) => {
-        setActiveSection(section)
-        setWindowOpen(true)
-      }} />
+      <Dock onIconClick={setActiveSection} />
 
       {showCommandPalette && (
         <CommandPalette

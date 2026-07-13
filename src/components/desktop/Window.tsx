@@ -2,13 +2,12 @@ import { useState } from 'react'
 import AboutWindow from '../../windows/AboutWindow'
 import ExperienceWindow from '../../windows/ExperienceWindow'
 import ProjectsWindow from '../../windows/ProjectsWindow'
-import ReadsWindow from '../../windows/ReadsWindow'
 import BlogWindow from '../../windows/BlogWindow'
 import ContactWindow from '../../windows/ContactWindow'
 import ResearchWindow from '../../windows/ResearchWindow'
 import './Window.css'
 
-type Section = 'about' | 'experience' | 'projects' | 'reads' | 'blog' | 'contact' | 'research'
+type Section = 'about' | 'experience' | 'projects' | 'blog' | 'contact' | 'research'
 
 interface WindowProps {
   activeSection: Section
@@ -21,8 +20,7 @@ const tabs: { id: Section; label: string }[] = [
   { id: 'experience', label: 'Experience' },
   { id: 'research', label: 'Research' },
   { id: 'projects', label: 'Projects' },
-  { id: 'reads', label: 'Reads' },
-  { id: 'blog', label: 'Blog' },
+  { id: 'blog', label: 'Essays' },
   { id: 'contact', label: 'Contact' },
 ]
 
@@ -39,8 +37,6 @@ export default function Window({ activeSection, setActiveSection, onClose }: Win
         return <ResearchWindow />
       case 'projects':
         return <ProjectsWindow />
-      case 'reads':
-        return <ReadsWindow />
       case 'blog':
         return <BlogWindow />
       case 'contact':

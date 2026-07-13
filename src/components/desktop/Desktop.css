@@ -11,8 +11,26 @@
 .desktop-main {
   flex: 1;
   position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  overflow: auto;
+}
+
+.desktop-content {
+  width: min(960px, 100% - 140px);
+  margin: 32px auto 110px;
+  padding: 20px 28px 28px;
+  color: #121212;
+  background: rgba(248, 250, 250, 0.82);
+  border: 1px solid rgba(0, 0, 0, 0.18);
+}
+
+.desktop-content a {
+  color: #0d3f8a;
+}
+
+@media (max-width: 768px) {
+  .desktop-content {
+    width: calc(100% - 24px);
+    margin: 12px auto 92px;
+    padding: 16px;
+  }
 }

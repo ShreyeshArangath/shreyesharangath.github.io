@@ -7,49 +7,98 @@ export interface BlogPost {
   content: string
 }
 
-export const blogPosts: BlogPost[] = [
-  {
-    id: 'hello-world',
-    title: 'Hello, World',
-    date: '2025-01-15',
-    tags: ['meta', 'systems'],
-    excerpt: 'First post. A brief introduction to this space and what to expect.',
-    content: `
-# Hello, World
+interface ParsedFrontmatter {
+  title?: string
+  date?: string
+  tags?: string
+  excerpt?: string
+}
 
-Welcome to my corner of the internet.
+const postModules = import.meta.glob('./posts/*.md', {
+  eager: true,
+  import: 'default',
+  query: '?raw',
+}) as Record<string, string>
 
-This is where I'll share thoughts on distributed systems, data infrastructure, performance optimization, and the occasional deep dive into technical problems worth solving.
+function slugFromPath(path: string): string {
+  const fileName = path.split('/').pop() ?? ''
+  return fileName.replace(/\.md$/, '')
+}
 
-## What to Expect
+function parseFrontmatter(raw: string): { meta: ParsedFrontmatter; content: string } {
+  if (!raw.startsWith('---\n')) {
+    return { meta: {}, content: raw.trim() }
+  }
 
-Writing here serves a few purposes:
+  const endIndex = raw.indexOf('\n---\n', 4)
+  if (endIndex < 0) {
+    return { meta: {}, content: raw.trim() }
+  }
 
-1. **Clarifying thinking** - Writing forces precision. If I can't explain something clearly, I don't understand it well enough.
-2. **Sharing learnings** - Working on large-scale systems surfaces interesting problems. Some are worth documenting.
-3. **Building in public** - Experiments, benchmarks, and investigations that might be useful to others.
+  const frontmatter = raw.slice(4, endIndex).trim()
+  const content = raw.slice(endIndex + 5).trim()
+  const meta: ParsedFrontmatter = {}
 
-## Topics
+  frontmatter.split('\n').forEach((line) => {
+    const [rawKey, ...rawValue] = line.split(':')
+    if (!rawKey || rawValue.length === 0) {
+      return
+    }
 
-Expect posts on:
+    const key = rawKey.trim() as keyof ParsedFrontmatter
+    const value = rawValue.join(':').trim().replace(/^["']|["']$/g, '')
+    meta[key] = value
+  })
 
-- **Distributed systems**: Patterns, pitfalls, and production learnings
-- **Data infrastructure**: Spark, SQL optimization, execution frameworks
-- **Performance**: Profiling, bottleneck analysis, and acceleration techniques
-- **Cost optimization**: Doing more with less at scale
-- **Developer experience**: Tools and workflows that actually matter
+  return { meta, content }
+}
 
-## Philosophy
+function parseTags(rawTags?: string): string[] {
+  if (!rawTags) {
+    return []
+  }
 
-Keep it practical. Skip the fluff. Focus on what works in production, not just in theory.
+  const normalized = rawTags.replace(/^\[|\]$/g, '')
+  return normalized
+    .split(',')
+    .map((tag) => tag.trim().replace(/^["']|["']$/g, ''))
+    .filter(Boolean)
+}
 
-If you're interested in these topics, feel free to reach out. Always happy to discuss systems, trade notes, or debug thorny problems.
+function stripMarkdown(text: string): string {
+  return text
+    .replace(/^#+\s*/gm, '')
+    .replace(/`([^`]+)`/g, '$1')
+    .replace(/\*\*([^*]+)\*\*/g, '$1')
+    .replace(/\*([^*]+)\*/g, '$1')
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+    .replace(/^[-*]\s+/gm, '')
+    .trim()
+}
 
-More soon.
+function inferExcerpt(content: string): string {
+  const firstParagraph = content
+    .split('\n')
+    .map((line) => line.trim())
+    .find((line) => line && !line.startsWith('#') && !line.startsWith('- ') && !line.startsWith('>'))
 
----
+  return stripMarkdown(firstParagraph ?? content).slice(0, 180)
+}
 
-*P.S. Yes, this site has Vim-inspired navigation. Press \`:\` to open the command palette. Use \`h/l\` to switch tabs. Because why not.*
-    `.trim(),
-  },
-]
+function parsePost(path: string, raw: string): BlogPost {
+  const id = slugFromPath(path)
+  const { meta, content } = parseFrontmatter(raw)
+
+  return {
+    id,
+    title: meta.title || id.replace(/-/g, ' '),
+    date: meta.date || '',
+    tags: parseTags(meta.tags),
+    excerpt: meta.excerpt || inferExcerpt(content),
+    content,
+  }
+}
+
+export const blogPosts: BlogPost[] = Object.entries(postModules)
+  .map(([path, raw]) => parsePost(path, raw))
+  .sort((a, b) => b.date.localeCompare(a.date))

@@ -49,12 +49,11 @@ npm run preview
 │   │   ├── AboutWindow.tsx          # About section
 │   │   ├── ExperienceWindow.tsx     # Work experience
 │   │   ├── ProjectsWindow.tsx       # Projects showcase
-│   │   ├── ReadsWindow.tsx          # Reading list
-│   │   ├── BlogWindow.tsx           # Blog posts
+│   │   ├── BlogWindow.tsx           # Essays
 │   │   └── ContactWindow.tsx        # Contact info
 │   ├── content/
-│   │   ├── reads.ts                 # Curated reading list
-│   │   └── blog.ts                  # Blog posts
+│   │   ├── blog.ts                  # Markdown post loader
+│   │   └── posts/                   # Blog post .md files
 │   ├── styles/
 │   │   ├── index.css                # Global styles
 │   │   └── App.css                  # App-level styles
@@ -74,7 +73,7 @@ npm run preview
 ### Command Palette
 
 - Press `:` to open the command palette
-- Type commands like `:about`, `:experience`, `:projects`, `:reads`, `:blog`, `:contact`
+- Type commands like `:about`, `:experience`, `:projects`, `:essays`, `:contact`
 - Press `Esc` to close the command palette
 - Type `:help` for full command list
 
@@ -100,42 +99,22 @@ npm run preview
 4. **Contact**: Edit `src/windows/ContactWindow.tsx`
    - Update email and social links
 
-### Add Blog Posts
+### Add Essays
 
-Edit `src/content/blog.ts` and add new entries to the `blogPosts` array:
+Add a new `.md` file to `src/content/posts/`:
 
-```typescript
-{
-  id: 'unique-slug',
-  title: 'Your Post Title',
-  date: '2025-01-15',
-  tags: ['tag1', 'tag2'],
-  excerpt: 'Brief summary of the post',
-  content: `
-# Full Content
+```md
+---
+title: "Your Post Title"
+date: "2026-07-12"
+tags: "systems, notes"
+excerpt: "One-line summary for the index page."
+---
 
-Your blog post content here.
-Supports basic markdown-like syntax:
-- Headers: # H1, ## H2, ### H3
-- Lists: numbered and bullet points
-- Inline code: \`code\`
-- Emphasis: *italic*
-  `.trim(),
-}
+Write your post in markdown here.
 ```
 
-### Add Books to Reading List
-
-Edit `src/content/reads.ts` and add entries to the `reads` array:
-
-```typescript
-{
-  title: 'Book Title',
-  author: 'Author Name',
-  note: 'Your one-line note about the book',
-  category: 'Distributed Systems', // or 'Engineering Craft', 'Thinking'
-}
-```
+Supported markdown formatting includes headings, paragraphs, ordered/unordered lists, inline code, bold, italics, and links.
 
 ### Customize Colors
 
