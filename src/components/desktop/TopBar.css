@@ -45,3 +45,24 @@
   background: var(--topbar-bg);
   border: 1px inset var(--border-dark);
 }
+
+@media (max-width: 768px) {
+  .topbar {
+    padding: 0 4px;
+  }
+
+  .topbar-button {
+    padding: 2px 8px;
+    font-size: 12px;
+  }
+
+  .topbar-right {
+    gap: 6px;
+  }
+
+  .topbar-lang,
+  .topbar-time {
+    padding: 1px 6px;
+    font-size: 12px;
+  }
+}
