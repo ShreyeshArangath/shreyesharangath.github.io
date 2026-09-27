@@ -151,9 +151,9 @@ export default function BlogWindow() {
   return (
     <div className="blog-window">
       <div className="blog-intro">
-        <h2>Essays</h2>
+        <h2>Blog</h2>
         <p>
-          Notes and essays in progress.
+          Notes and posts in progress.
         </p>
       </div>
 
@@ -172,7 +172,7 @@ export default function BlogWindow() {
         ))}
 
         {blogPosts.length === 0 && (
-          <p className="blog-empty">No essays yet.</p>
+          <p className="blog-empty">No posts yet.</p>
         )}
       </div>
     </div>

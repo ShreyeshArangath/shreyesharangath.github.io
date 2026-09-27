@@ -1,12 +1,9 @@
+import { useState } from 'react'
 import TopBar from './TopBar'
 import DesktopIcons from './DesktopIcons'
 import Dock from './Dock'
 import CommandPalette from './CommandPalette'
-import AboutWindow from '../../windows/AboutWindow'
-import ExperienceWindow from '../../windows/ExperienceWindow'
-import ProjectsWindow from '../../windows/ProjectsWindow'
-import BlogWindow from '../../windows/BlogWindow'
-import ContactWindow from '../../windows/ContactWindow'
+import Window from './Window'
 import './Desktop.css'
 
 type Section = 'about' | 'experience' | 'projects' | 'blog' | 'contact'
@@ -30,22 +27,7 @@ export default function Desktop({
   setCommandInput,
   handleCommand,
 }: DesktopProps) {
-  const renderContent = () => {
-    switch (activeSection) {
-      case 'about':
-        return <AboutWindow />
-      case 'experience':
-        return <ExperienceWindow />
-      case 'projects':
-        return <ProjectsWindow />
-      case 'blog':
-        return <BlogWindow />
-      case 'contact':
-        return <ContactWindow />
-      default:
-        return <AboutWindow />
-    }
-  }
+  const [windowOpen, setWindowOpen] = useState(true)
 
   return (
     <div className="desktop">
@@ -53,12 +35,19 @@ export default function Desktop({
 
       <div className="desktop-main">
         <DesktopIcons onIconClick={setActiveSection} />
-        <main className="desktop-content" aria-live="polite">
-          {renderContent()}
-        </main>
+        {windowOpen && (
+          <Window
+            activeSection={activeSection}
+            setActiveSection={setActiveSection}
+            onClose={() => setWindowOpen(false)}
+          />
+        )}
       </div>
 
-      <Dock onIconClick={setActiveSection} />
+      <Dock onIconClick={(section) => {
+        setActiveSection(section)
+        setWindowOpen(true)
+      }} />
 
       {showCommandPalette && (
         <CommandPalette

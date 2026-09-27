@@ -3,6 +3,51 @@
   margin: 0 auto;
 }
 
+.about-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.28fr) minmax(240px, 0.72fr);
+  grid-template-areas: 'copy visual';
+  gap: 40px;
+  align-items: start;
+}
+
+.about-visual {
+  grid-area: visual;
+  position: sticky;
+  top: 0;
+}
+
+.about-copy { grid-area: copy; }
+
+.about-visual .about-portrait-frame {
+  width: 100%;
+  max-width: none;
+  min-height: 410px;
+  border-radius: 8px;
+  margin: 0 auto;
+}
+
+.about-visual-caption {
+  margin: 14px auto 0;
+  max-width: 220px;
+  color: var(--text-secondary);
+  font-family: 'SF Mono', 'SFMono-Regular', 'Courier New', monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  line-height: 1.5;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.about-copy .about-header {
+  margin-bottom: 26px;
+}
+
+.about-copy .about-links {
+  justify-content: flex-start;
+  margin: 0 0 30px;
+}
+
 .about-intro {
   display: grid;
   grid-template-columns: 164px minmax(0, 1fr);
@@ -151,7 +196,25 @@
   margin-bottom: 0;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 560px) {
+  .about-layout {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'visual'
+      'copy';
+    gap: 26px;
+  }
+
+  .about-visual {
+    position: static;
+  }
+
+  .about-visual .about-portrait-frame {
+    max-width: 280px;
+    min-height: 280px;
+    border-radius: 8px;
+  }
+
   .about-intro {
     grid-template-columns: 112px minmax(0, 1fr);
     gap: 18px;

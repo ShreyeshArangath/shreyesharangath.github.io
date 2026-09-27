@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 22px;
+  padding-inline: max(22px, calc((100vw - 980px) / 2));
   font-size: 11px;
   color: #c5cbd0;
   letter-spacing: 0.08em;
@@ -53,7 +53,7 @@
 
 @media (max-width: 768px) {
   .topbar {
-    padding: 0 4px;
+    padding-inline: 16px;
   }
 
   .topbar-button {

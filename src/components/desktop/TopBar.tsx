@@ -28,7 +28,7 @@ export default function TopBar() {
   return (
     <div className="topbar">
       <div className="topbar-left">
-        <button className="topbar-button">About</button>
+        <button className="topbar-button">shreyesh@portfolio:~</button>
       </div>
       <div className="topbar-right">
         <span className="topbar-lang">en</span>

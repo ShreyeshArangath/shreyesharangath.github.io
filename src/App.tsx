@@ -33,7 +33,6 @@ Esc - Close command palette`)
       ':experience': 'experience',
       ':projects': 'projects',
       ':blog': 'blog',
-      ':essays': 'blog',
       ':contact': 'contact',
     }
 
