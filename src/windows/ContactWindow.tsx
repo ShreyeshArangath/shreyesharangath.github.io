@@ -23,7 +23,7 @@ export default function ContactWindow() {
 
       <div className="contact-card">
         <div className="contact-item">
-          <div className="contact-icon">📧</div>
+          <div className="contact-icon">@</div>
           <div className="contact-details">
             <h3>Email</h3>
             <a href={`mailto:${email}`} className="contact-link">
@@ -36,7 +36,7 @@ export default function ContactWindow() {
         </div>
 
         <div className="contact-item">
-          <div className="contact-icon">🔗</div>
+          <div className="contact-icon">GH</div>
           <div className="contact-details">
             <h3>GitHub</h3>
             <a
@@ -51,7 +51,7 @@ export default function ContactWindow() {
         </div>
 
         <div className="contact-item">
-          <div className="contact-icon">💼</div>
+          <div className="contact-icon">in</div>
           <div className="contact-details">
             <h3>LinkedIn</h3>
             <a

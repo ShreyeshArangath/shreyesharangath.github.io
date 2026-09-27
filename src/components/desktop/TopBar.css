@@ -1,32 +1,38 @@
 .topbar {
-  height: 28px;
+  height: 38px;
   background: var(--topbar-bg);
-  border-bottom: 2px solid var(--border-dark);
+  border-bottom: 1px solid rgba(216, 212, 204, 0.18);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 8px;
-  font-size: 13px;
+  padding: 0 22px;
+  font-size: 11px;
+  color: #c5cbd0;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   user-select: none;
 }
 
 .topbar-left {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 12px;
 }
 
 .topbar-button {
-  background: var(--topbar-bg);
-  border: 1px outset var(--border-light);
-  padding: 2px 12px;
-  font-size: 13px;
+  background: transparent;
+  border: 0;
+  padding: 2px 0;
+  font-size: 11px;
   cursor: pointer;
   font-family: inherit;
+  color: #f0ece5;
+  font-weight: 600;
+  letter-spacing: 0.08em;
 }
 
 .topbar-button:hover {
-  background: #d0d0d0;
+  color: var(--window-title-bar);
 }
 
 .topbar-button:active {
@@ -36,14 +42,13 @@
 .topbar-right {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 18px;
 }
 
 .topbar-lang,
 .topbar-time {
-  padding: 2px 8px;
-  background: var(--topbar-bg);
-  border: 1px inset var(--border-dark);
+  padding: 2px 0;
+  color: #9faab2;
 }
 
 @media (max-width: 768px) {

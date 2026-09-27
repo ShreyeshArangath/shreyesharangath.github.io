@@ -6,6 +6,12 @@
   flex-direction: column;
   position: relative;
   overflow: hidden;
+  background-image:
+    linear-gradient(rgba(11, 17, 24, 0.34), rgba(11, 17, 24, 0.34)),
+    url('/portfolio-texture.png');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .desktop-main {

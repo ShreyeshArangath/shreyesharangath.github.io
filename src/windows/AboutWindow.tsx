@@ -1,12 +1,16 @@
 import './AboutWindow.css'
+import InteractivePortrait from '../components/InteractivePortrait'
 
 export default function AboutWindow() {
   return (
     <div className="about-window">
-      <div className="about-header">
-        <h1 className="about-name">Shreyesh Arangath</h1>
-        <h2 className="about-title">Software Engineer</h2>
-        <p className="about-location">📍 San Francisco, CA</p>
+      <div className="about-intro">
+        <InteractivePortrait />
+        <div className="about-header">
+          <h1 className="about-name">Shreyesh Arangath</h1>
+          <h2 className="about-title">Software Engineer</h2>
+          <p className="about-location">San Francisco, CA</p>
+        </div>
       </div>
 
       <div className="about-links">
@@ -16,7 +20,7 @@ export default function AboutWindow() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          📧 Email
+          Email
         </a>
         <a
           href="https://github.com/shreyesharangath"
@@ -24,7 +28,7 @@ export default function AboutWindow() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          🔗 GitHub
+          GitHub
         </a>
         <a
           href="https://linkedin.com/in/shreyesh"
@@ -32,7 +36,7 @@ export default function AboutWindow() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          💼 LinkedIn
+          LinkedIn
         </a>
       </div>
 

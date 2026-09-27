@@ -153,7 +153,7 @@ export default function BlogWindow() {
       <div className="blog-intro">
         <h2>Essays</h2>
         <p>
-          A small collection of notes and essays.
+          Notes and essays in progress.
         </p>
       </div>
 

@@ -1,6 +1,6 @@
 import './DesktopIcons.css'
 
-type Section = 'about' | 'experience' | 'projects' | 'blog' | 'contact' | 'research'
+type Section = 'about' | 'experience' | 'projects' | 'blog' | 'contact'
 
 interface DesktopIconsProps {
   onIconClick: (section: Section) => void
@@ -9,16 +9,14 @@ interface DesktopIconsProps {
 interface IconData {
   id: Section
   label: string
-  icon: string
 }
 
 const icons: IconData[] = [
-  { id: 'projects', label: 'Applications', icon: '📁' },
-  { id: 'experience', label: 'Experience', icon: '💼' },
-  { id: 'research', label: 'Research', icon: '🔬' },
-  { id: 'projects', label: 'Projects', icon: '🚀' },
-  { id: 'blog', label: 'Blogs', icon: '✍️' },
-  { id: 'about', label: 'readme.txt', icon: '📄' },
+  { id: 'about', label: 'About' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'projects', label: 'Projects' },
+  { id: 'blog', label: 'Blog' },
+  { id: 'contact', label: 'Contact' },
 ]
 
 export default function DesktopIcons({ onIconClick }: DesktopIconsProps) {
@@ -31,7 +29,7 @@ export default function DesktopIcons({ onIconClick }: DesktopIconsProps) {
           onClick={() => onIconClick(icon.id)}
           aria-label={icon.label}
         >
-          <div className="desktop-icon-image">{icon.icon}</div>
+          <span className={`desktop-icon-image desktop-icon-pixel desktop-icon-pixel-${icon.id}`} aria-hidden="true" />
           <div className="desktop-icon-label">{icon.label}</div>
         </button>
       ))}

@@ -7,10 +7,9 @@ import ExperienceWindow from '../../windows/ExperienceWindow'
 import ProjectsWindow from '../../windows/ProjectsWindow'
 import BlogWindow from '../../windows/BlogWindow'
 import ContactWindow from '../../windows/ContactWindow'
-import ResearchWindow from '../../windows/ResearchWindow'
 import './Desktop.css'
 
-type Section = 'about' | 'experience' | 'research' | 'projects' | 'blog' | 'contact'
+type Section = 'about' | 'experience' | 'projects' | 'blog' | 'contact'
 
 interface DesktopProps {
   activeSection: Section
@@ -37,8 +36,6 @@ export default function Desktop({
         return <AboutWindow />
       case 'experience':
         return <ExperienceWindow />
-      case 'research':
-        return <ResearchWindow />
       case 'projects':
         return <ProjectsWindow />
       case 'blog':

@@ -1,6 +1,6 @@
 import './Dock.css'
 
-type Section = 'about' | 'experience' | 'projects' | 'blog' | 'contact' | 'research'
+type Section = 'about' | 'experience' | 'projects' | 'blog' | 'contact'
 
 interface DockProps {
   onIconClick: (section: Section) => void
@@ -9,16 +9,14 @@ interface DockProps {
 interface DockIconData {
   id: Section
   label: string
-  icon: string
 }
 
 const dockIcons: DockIconData[] = [
-  { id: 'about', label: 'About', icon: '👤' },
-  { id: 'experience', label: 'Experience', icon: '💼' },
-  { id: 'research', label: 'Research', icon: '🔬' },
-  { id: 'projects', label: 'Projects', icon: '🚀' },
-  { id: 'blog', label: 'Essays', icon: '✍️' },
-  { id: 'contact', label: 'Contact', icon: '📧' },
+  { id: 'about', label: 'About' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'projects', label: 'Projects' },
+  { id: 'blog', label: 'Blog' },
+  { id: 'contact', label: 'Contact' },
 ]
 
 export default function Dock({ onIconClick }: DockProps) {
@@ -33,7 +31,7 @@ export default function Dock({ onIconClick }: DockProps) {
             aria-label={icon.label}
             title={icon.label}
           >
-            <span className="dock-icon-emoji">{icon.icon}</span>
+            <span className={`dock-icon-pixel dock-icon-pixel-${icon.id}`} aria-hidden="true" />
           </button>
         ))}
       </div>
