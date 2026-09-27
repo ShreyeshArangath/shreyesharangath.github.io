@@ -115,6 +115,19 @@
 }
 
 @media (max-width: 768px) {
+  .contact-intro {
+    margin-bottom: 24px;
+    padding-bottom: 18px;
+  }
+
+  .contact-card {
+    gap: 16px;
+  }
+
+  .contact-item {
+    padding: 16px;
+  }
+
   .contact-item {
     flex-direction: column;
     gap: 12px;

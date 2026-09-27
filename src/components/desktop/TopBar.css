@@ -53,6 +53,7 @@
 
 @media (max-width: 768px) {
   .topbar {
+    height: 32px;
     padding-inline: 16px;
   }
 
@@ -62,7 +63,7 @@
   }
 
   .topbar-right {
-    gap: 6px;
+    display: none;
   }
 
   .topbar-lang,

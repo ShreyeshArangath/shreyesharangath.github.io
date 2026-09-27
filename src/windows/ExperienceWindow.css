@@ -87,6 +87,19 @@
 }
 
 @media (max-width: 768px) {
+  .experience-intro {
+    margin-bottom: 24px;
+    padding-bottom: 18px;
+  }
+
+  .experience-timeline {
+    gap: 18px;
+  }
+
+  .experience-item {
+    padding: 16px;
+  }
+
   .experience-header {
     flex-direction: column;
   }

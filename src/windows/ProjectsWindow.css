@@ -119,6 +119,19 @@
 }
 
 @media (max-width: 768px) {
+  .projects-intro {
+    margin-bottom: 24px;
+    padding-bottom: 18px;
+  }
+
+  .projects-grid {
+    gap: 16px;
+  }
+
+  .project-card {
+    padding: 16px;
+  }
+
   .project-header {
     flex-direction: column;
   }

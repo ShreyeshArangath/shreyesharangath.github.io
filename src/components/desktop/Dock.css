@@ -58,3 +58,9 @@
     transform: none;
   }
 }
+
+@media (max-width: 768px) {
+  .dock {
+    display: none;
+  }
+}
